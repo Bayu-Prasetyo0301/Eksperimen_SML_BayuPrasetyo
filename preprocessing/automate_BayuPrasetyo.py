@@ -33,6 +33,27 @@ print('\nDataset berhasil dimuat')
 print(df.shape)
 
 # =========================================================
+# MENAMPILKAN DATASET
+# =========================================================
+
+print('\n5 Data Teratas:')
+print(df.head())
+
+# =========================================================
+# CEK MISSING VALUE
+# =========================================================
+
+print('\nMissing Value:')
+print(df.isnull().sum())
+
+# =========================================================
+# CEK DUPLICATE DATA
+# =========================================================
+
+print('\nJumlah Duplicate:')
+print(df.duplicated().sum())
+
+# =========================================================
 # DROP COLUMN
 # =========================================================
 
@@ -91,6 +112,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 print('\nTrain test split berhasil')
 
+print('\nShape X_train :', X_train.shape)
+print('Shape X_test  :', X_test.shape)
+
 # =========================================================
 # FEATURE SCALING
 # =========================================================
@@ -118,11 +142,11 @@ print('\nScaler berhasil disimpan')
 # =========================================================
 
 processed_df = pd.DataFrame(
-    X,
+    X_train_scaled,
     columns=X.columns
 )
 
-processed_df['Exited'] = y.values
+processed_df['Exited'] = y_train.values
 
 processed_df.to_csv(
     'Churn_Modelling_preprocessing.csv',
@@ -141,3 +165,6 @@ print('=' * 50)
 
 print('\nShape dataset akhir:')
 print(processed_df.shape)
+
+print('\n5 Data Preprocessing Teratas:')
+print(processed_df.head())
